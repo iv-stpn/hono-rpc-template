@@ -1,0 +1,26 @@
+{
+  "name": "hono-rpc-demo",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "concurrently -n api,web -c blue,magenta \"bun run dev:api\" \"bun run dev:web\"",
+    "dev:api": "bun run --cwd apps/api dev",
+    "dev:web": "bun run --cwd apps/web dev",
+    "build": "bun run --cwd apps/api build:types && bun run --filter @app/web build",
+    "typecheck": "bun run --cwd apps/api build:types && (cd apps/web && tsc --noEmit) && tsc -p packages/utils/tsconfig.json --noEmit && tsc -p packages/schemas/tsconfig.json --noEmit",
+    "db:migrate": "bun run --filter @app/api db:migrate",
+    "db:migrate:local": "bun run --filter @app/api db:migrate:local",
+    "db:reset:local": "bun run --filter @app/api db:reset:local",
+    "lint": "biome check .",
+    "lint:fix": "biome check --write ."
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.5.1",
+    "concurrently": "^10.0.3",
+    "typescript": "^5.6.3"
+  }
+}

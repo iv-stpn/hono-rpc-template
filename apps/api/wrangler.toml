@@ -1,0 +1,29 @@
+name = "hono-rpc-api"
+main = "src/index.ts"
+compatibility_date = "2024-12-01"
+compatibility_flags = ["nodejs_compat"]
+
+[[durable_objects.bindings]]
+name = "RATE_LIMITER"
+class_name = "RateLimiterDO"
+script_name = "hono-rpc-api"
+
+[[migrations]]
+tag = "v1"
+new_classes = ["RateLimiterDO"]
+
+[[d1_databases]]
+binding = "DB"
+database_name = "hono_rpc_db"
+database_id = "REPLACE_WITH_YOUR_D1_DATABASE_ID"
+migrations_dir = "migrations"
+
+[vars]
+# Override in production with `wrangler secret put SESSION_SECRET`
+SESSION_SECRET = "dev-only-insecure-secret-change-me"
+# Origin allowed to make credentialed requests (the web app).
+WEB_ORIGIN = "http://localhost:5173"
+
+[dev]
+port = 8787
+local_protocol = "http"

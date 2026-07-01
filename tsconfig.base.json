@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "lib": ["ES2022"],
+    "strict": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "verbatimModuleSyntax": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "types": [],
+    "paths": {
+      "@app/utils": ["./packages/utils/src/index.ts"],
+      "@app/utils/*": ["./packages/utils/src/*"],
+      "@app/schemas": ["./packages/schemas/src/index.ts"],
+      "@app/schemas/*": ["./packages/schemas/src/*"]
+    }
+  }
+}

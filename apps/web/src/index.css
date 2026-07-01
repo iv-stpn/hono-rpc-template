@@ -1,0 +1,68 @@
+@import "tailwindcss";
+
+/* Class-based dark mode: the `dark:` variant applies whenever an ancestor
+   (or the element itself) carries the `dark` class. The theme store toggles
+   this class on <html>. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Theme tokens. The light palette lives on :root; the dark palette overrides
+   the same custom properties under .dark. `@theme inline` below maps these
+   onto Tailwind utilities (bg-surface, text-muted, ring-accent, …) — with
+   `inline`, the utilities resolve to var(--c-*) directly, so flipping the
+   `dark` class re-themes the whole app at runtime. */
+:root {
+  --c-bg: #f6f7fb;
+  --c-surface: #ffffff;
+  --c-surface-2: #eef0f6;
+  --c-border: #d9dde7;
+  --c-fg: #1a1d27;
+  --c-muted: #5b6477;
+  --c-accent: #3b7bf6;
+  --c-accent-strong: #2f6ae0;
+  --c-danger: #e5484d;
+}
+
+.dark {
+  --c-bg: #0b0d12;
+  --c-surface: #14171f;
+  --c-surface-2: #1b1f29;
+  --c-border: #272d3a;
+  --c-fg: #e7e9ee;
+  --c-muted: #98a1b3;
+  --c-accent: #6ea8fe;
+  --c-accent-strong: #4d8dfb;
+  --c-danger: #f06a6a;
+}
+
+@theme inline {
+  --color-bg: var(--c-bg);
+  --color-surface: var(--c-surface);
+  --color-surface-2: var(--c-surface-2);
+  --color-border: var(--c-border);
+  --color-fg: var(--c-fg);
+  --color-muted: var(--c-muted);
+  --color-accent: var(--c-accent);
+  --color-accent-strong: var(--c-accent-strong);
+  --color-danger: var(--c-danger);
+
+  --font-sans: system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+@layer base {
+  html {
+    color-scheme: light;
+  }
+
+  html.dark {
+    color-scheme: dark;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100dvh;
+    background: radial-gradient(1200px 600px at 50% -10%, rgba(110, 168, 254, 0.12), transparent 60%), var(--c-bg);
+    color: var(--c-fg);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+}
