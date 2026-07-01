@@ -14,7 +14,9 @@
     "typecheck": "bun run build:types && tsc --noEmit",
     "db:migrate:local": "wrangler d1 migrations apply hono_rpc_db --local",
     "db:migrate": "wrangler d1 migrations apply hono_rpc_db --remote",
-    "db:reset:local": "rm -rf .wrangler/state && bun run db:migrate:local"
+    "db:reset:local": "rm -rf .wrangler/state && bun run db:migrate:local",
+    "test": "vitest run",
+    "test:watch": "vitest"
   },
   "dependencies": {
     "@app/schemas": "workspace:*",

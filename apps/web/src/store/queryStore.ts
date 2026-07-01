@@ -99,13 +99,17 @@ export const useQueryStore = create<QueryState>((set, get) => ({
     });
 
     // Clear the in-flight marker once settled so future calls can refetch.
-    inflight.finally(() => {
+    // Use then(onFulfilled, onRejected) rather than finally() so the cleanup
+    // promise resolves even when the fetch rejects — otherwise a failed fetch
+    // surfaces as an unhandled rejection (finally() passes rejections through).
+    const clearInflight = () => {
       set((state) => {
         const current = state.entries[key];
         if (!current) return state;
         return { entries: { ...state.entries, [key]: { ...current, inflight: undefined } } };
       });
-    });
+    };
+    inflight.then(clearInflight, clearInflight);
 
     return inflight;
   },

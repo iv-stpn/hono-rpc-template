@@ -6,7 +6,9 @@
     "dev": "vite --logLevel info --clearScreen false",
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest"
   },
   "dependencies": {
     "@app/api": "workspace:*",
