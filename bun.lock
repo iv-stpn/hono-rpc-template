@@ -16,6 +16,7 @@
         "@app/schemas": "workspace:*",
         "@app/utils": "workspace:*",
         "@hono/zod-validator": "^0.8.0",
+        "argon2-wasm-edge": "^1.0.23",
         "hono": "^4.6.14",
         "zod": "^4.4.3",
       },
@@ -461,6 +462,8 @@
     "ansi-regex": ["ansi-regex@6.2.2", "", {}, "sha512-Bq3SmSpyFHaWjPk8If9yc6svM8c56dB5BAtW4Qbw5jHTwwXXcTLoRMkpDJp6VL0XzlWaCHTXrkFURMYmD0sLqg=="],
 
     "ansi-styles": ["ansi-styles@6.2.3", "", {}, "sha512-4Dj6M28JB+oAH8kFkTLUo+a2jwOFkuqb3yucU0CANcRRUbxS0cP0nZYCGjcc3BNXwRIsUVmDGgzawme7zvJHvg=="],
+
+    "argon2-wasm-edge": ["argon2-wasm-edge@1.0.23", "", {}, "sha512-9OGfPkqC9Oe1sP50HNTemwbk/x+CJF7ci74jKsFXPIt7F0aJmSySx5JCOZ4+Zj4VmXIDaXr8y1p5FKFR633YVA=="],
 
     "aria-hidden": ["aria-hidden@1.2.6", "", { "dependencies": { "tslib": "^2.0.0" } }, "sha512-ik3ZgC9dY/lYVVM++OISsaYDeg1tb0VtP5uL3ouh1koGOaUMDPpbFIei4JkFimWUFPn90sbMNMXQAIVOlnYKJA=="],
 

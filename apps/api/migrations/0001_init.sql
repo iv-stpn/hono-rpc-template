@@ -3,7 +3,7 @@
 CREATE TABLE IF NOT EXISTS users (
   id         TEXT PRIMARY KEY,
   email      TEXT NOT NULL UNIQUE,
-  password   TEXT NOT NULL,          -- PBKDF2 hash, encoded as "salt:hash"
+  password   TEXT NOT NULL,          -- Argon2id encoded hash ($argon2id$...)
   created_at INTEGER NOT NULL
 );
 

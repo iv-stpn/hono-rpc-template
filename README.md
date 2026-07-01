@@ -27,7 +27,7 @@ The two apps run on separate origins (web on `:5173`, API on `:8787`) and talk c
 │   │   │   ├── durable-objects/            # Durable Object implementations
 │   │   │   │   └── rate-limiter.ts         # rate limiting DO
 │   │   │   ├── auth.ts                     # session middleware + cookie helpers
-│   │   │   ├── crypto.ts                   # PBKDF2 hashing + token helpers
+│   │   │   ├── crypto.ts                   # Argon2id hashing + token helpers
 │   │   │   ├── snowflake.ts                # distributed ID generation
 │   │   │   └── types.ts                    # API type definitions
 │   │   ├── migrations/                     # D1 SQL migrations
@@ -110,7 +110,7 @@ The worker reads `WEB_ORIGIN` to set the allowed CORS origin (defaults to
 - **Cloudflare D1** — SQLite database at the edge
 - **Cloudflare Durable Objects** — distributed rate limiting
 - **Zod** — runtime schema validation
-- **Web Crypto API** — password hashing (PBKDF2)
+- **Argon2id** (via [argon2-wasm-edge](https://github.com/ComicScrip/hash-wasm-edge)) — memory-hard password hashing in WebAssembly
 
 ### Frontend (`apps/web`)
 - **React 18** — UI framework
@@ -190,7 +190,7 @@ worker URL when building the web app.
 
 This is a demo showcasing modern full-stack patterns. Some areas intentionally simplified:
 
-- **Auth**: Passwords are hashed with PBKDF2 (100k iterations) via Web Crypto. Fine for a demo; consider a memory-hard KDF like Argon2 for production.
+- **Auth**: Passwords are hashed with Argon2id (memory-hard KDF) via the `argon2-wasm-edge` WebAssembly library, which runs in the Cloudflare Workers runtime. Hashes are stored as self-describing `$argon2id$...` encoded strings.
 - **Sessions**: Opaque tokens stored in D1, carried in an `httpOnly`, `secure`, `SameSite=None` cookie. Expired sessions are cleaned up lazily on lookup.
 - **Rate limiting**: Implemented with Cloudflare Durable Objects for distributed, per-IP rate limiting. Production systems may need more sophisticated strategies (user-based, tiered limits, etc.).
 - **IDs**: Uses Snowflake IDs for distributed, time-ordered ID generation. Suitable for production use but requires proper epoch configuration.
