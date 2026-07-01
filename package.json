@@ -11,6 +11,7 @@
     "dev:api": "bun run --cwd apps/api dev",
     "dev:web": "bun run --cwd apps/web dev",
     "build": "bun run --cwd apps/api build:types && bun run --filter @app/web build",
+    "clean": "find . -name 'node_modules' -type d -prune -exec rm -rf '{}' +",
     "typecheck": "bun run --cwd apps/api build:types && (cd apps/web && tsc --noEmit) && tsc -p packages/utils/tsconfig.json --noEmit && tsc -p packages/schemas/tsconfig.json --noEmit",
     "db:migrate": "bun run --filter @app/api db:migrate",
     "db:migrate:local": "bun run --filter @app/api db:migrate:local",
@@ -23,12 +24,12 @@
     "test:web": "bun run --filter @app/web test"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.5.1",
-    "@testing-library/dom": "^10.4.1",
-    "@testing-library/react": "^16.3.2",
-    "concurrently": "^10.0.3",
-    "jsdom": "^29.1.1",
-    "typescript": "^5.6.3",
-    "vitest": "^4.1.9"
+    "@biomejs/biome": "2.5.1",
+    "@testing-library/dom": "10.4.1",
+    "@testing-library/react": "16.3.2",
+    "concurrently": "10.0.3",
+    "jsdom": "29.1.1",
+    "typescript": "5.6.3",
+    "vitest": "4.1.9"
   }
 }

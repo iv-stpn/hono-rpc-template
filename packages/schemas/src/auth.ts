@@ -1,5 +1,5 @@
 // Auth validation schemas
-import { z } from "zod";
+import z from "zod";
 
 export const PASSWORD_MIN = 8;
 

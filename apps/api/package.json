@@ -4,13 +4,13 @@
   "private": true,
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts"
+      "types": "./dist/apps/api/src/index.d.ts"
     }
   },
   "scripts": {
     "dev": "wrangler dev --port 8787",
     "deploy": "wrangler deploy",
-    "build:types": "rm -rf dist && tsc -p tsconfig.build.json --declarationDir dist 2>&1 | grep -v 'TS6059' || true && rm -f ../../packages/utils/src/*.d.ts ../../packages/schemas/src/*.d.ts",
+    "build:types": "rm -rf dist && tsc -p tsconfig.build.json --declarationDir dist",
     "typecheck": "bun run build:types && tsc --noEmit",
     "db:migrate:local": "wrangler d1 migrations apply hono_rpc_db --local",
     "db:migrate": "wrangler d1 migrations apply hono_rpc_db --remote",
@@ -21,14 +21,14 @@
   "dependencies": {
     "@app/schemas": "workspace:*",
     "@app/utils": "workspace:*",
-    "@hono/zod-validator": "^0.8.0",
-    "argon2-wasm-edge": "^1.0.23",
-    "hono": "^4.6.14",
-    "zod": "^4.4.3"
+    "@hono/zod-validator": "0.8.0",
+    "argon2-wasm-edge": "1.0.23",
+    "hono": "4.12.27",
+    "zod": "4.4.3"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^4.20241218.0",
-    "wrangler": "^4.0.0",
-    "typescript": "^5.6.3"
+    "@cloudflare/workers-types": "4.20260701.1",
+    "wrangler": "4.106.0",
+    "typescript": "5.6.3"
   }
 }
